@@ -1,3 +1,4 @@
+<!-- src/modules/dashboard/pages/Dashboard.vue -->
 <template>
     <v-container>
         <!-- App bar -->

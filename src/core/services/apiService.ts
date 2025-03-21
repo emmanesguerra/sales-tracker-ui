@@ -1,5 +1,4 @@
-// A reusable helper function for making API requests // Your API URL from .env
-
+// src/core/services/apiService.ts
 const API_URL = import.meta.env.VITE_API_URL
 
 const apiRequest = async (endpoint: string, options: RequestInit = {}) => {
