@@ -5,10 +5,10 @@
             <v-card-title class="text-center">Welcome</v-card-title>
             <v-card-text>
                 <v-form @submit.prevent="handleLogin">
-                    <v-text-field v-model="email" label="Email" type="email" required
+                    <v-text-field v-model="email" label="Email" type="email" required class="email-field"
                         :error="!!errorMessage"></v-text-field>
 
-                    <v-text-field v-model="password" label="Password" type="password" required
+                    <v-text-field v-model="password" label="Password" type="password" required class="password-field"
                         :error="!!errorMessage"></v-text-field>
 
                     <v-alert v-if="errorMessage" type="error" dense>{{ errorMessage }}</v-alert>
