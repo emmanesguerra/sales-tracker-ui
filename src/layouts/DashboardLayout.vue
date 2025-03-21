@@ -1,15 +1,19 @@
-<!-- src/modules/dashboard/pages/Dashboard.vue -->
 <template>
     <v-container>
         <!-- App bar -->
         <v-app-bar color="primary" elevation="2">
-            <v-app-bar-title>Dashboard</v-app-bar-title>
+            <v-app-bar-title>
+                <router-link :to="{ name: 'DashboardPage' }" class="no-hover-link">
+                    Dashboard
+                </router-link>
+            </v-app-bar-title>
         </v-app-bar>
 
         <!-- Navigation Drawer -->
         <v-navigation-drawer elevation="1" expand-on-hover permanent rail>
             <v-list class="large-font" nav>
-                <v-list-item prepend-icon="mdi-tshirt-crew" title="Item Management" value="items"></v-list-item>
+                <v-list-item prepend-icon="mdi-tshirt-crew" title="Item Management" value="items"
+                    :to="{ name: 'ItemPage' }"></v-list-item>
                 <v-list-item prepend-icon="mdi-chart-box" title="Sales Report" value="sales"></v-list-item>
                 <v-list-item prepend-icon="mdi-qrcode" title="QR Generator" value="qrcode"></v-list-item>
             </v-list>
@@ -24,18 +28,12 @@
         </v-navigation-drawer>
 
         <!-- Main content -->
-        <v-main>
-            <v-container>
-                <v-row>
-                    <v-col cols="12">
-                        <v-card>
-                            <v-card-title>Welcome, User!</v-card-title>
-                            <v-card-text>This is your dashboard.</v-card-text>
-                        </v-card>
-                    </v-col>
-                </v-row>
+        <v-layout>
+            <v-container fluid width="100vw">
+                <!-- Here, we will render the page content dynamically -->
+                <router-view />
             </v-container>
-        </v-main>
+        </v-layout>
     </v-container>
 </template>
 
@@ -54,6 +52,15 @@ const logout = () => {
 
 <style scoped>
 .large-font :deep(.v-list-item-title) {
-  font-size: 1rem  !important;
+    font-size: 1rem !important;
+}
+
+.no-hover-link {
+    text-decoration: none;
+    color: white;
+}
+
+.no-hover-link:hover {
+    background-color: transparent;
 }
 </style>

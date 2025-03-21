@@ -4,6 +4,7 @@ import { createVuetify } from 'vuetify'
 import * as components from 'vuetify/components'
 import * as directives from 'vuetify/directives'
 import '@mdi/font/css/materialdesignicons.css'
+import { VCalendar } from 'vuetify/labs/VCalendar'
 
 // Define custom theme
 const customTheme = {
@@ -11,7 +12,7 @@ const customTheme = {
     colors: {
         primary: getComputedStyle(document.documentElement).getPropertyValue('--vt-c-indigo').trim(),
         secondary: '#FFC107',
-        background: '#F5F5F5',
+        background: '#FFF',
     }
 }
 

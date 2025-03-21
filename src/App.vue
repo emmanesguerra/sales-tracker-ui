@@ -6,10 +6,9 @@
   </v-app>
 </template>
 
-<script setup>
-// Optional: import stores or components if necessary
-</script>
-
 <style scoped>
-/* Global styles */
+/* Ensure v-main takes up the full viewport */
+.v-main {
+  height: 100vh;
+}
 </style>
