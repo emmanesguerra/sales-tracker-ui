@@ -1,3 +1,4 @@
+// src/modules/auth/services/authService
 import { apiRequest } from '@/core/services/apiService'
 
 const AuthService = {
