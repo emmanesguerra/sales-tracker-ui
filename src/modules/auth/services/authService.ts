@@ -1,11 +1,18 @@
 // src/modules/auth/services/authService
 import { apiRequest } from '@/core/services/apiService'
+import { retriveRequest } from '@/core/services/retrieveTokenService'
 
 const AuthService = {
   async login(email: string, password: string) {
     return apiRequest('/login', {
       method: 'POST',
       body: JSON.stringify({ email, password }),
+    })
+  },
+
+  async retriveToken() {
+    return retriveRequest('/retrieve-token', {
+      method: 'GET'
     })
   },
 
