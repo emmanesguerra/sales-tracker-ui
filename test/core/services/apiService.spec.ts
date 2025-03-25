@@ -17,25 +17,34 @@ describe('apiRequest', () => {
   })
 
   it('sends request with correct headers and method', async () => {
-    // Mock authStore token
-    useAuthStore.mockReturnValue({ token: 'fake-token' })
+    // Mock authStore subdomain and token
+    const mockAuthStore = {
+      subdomain: 'mytenant',
+      token: 'fake-token',
+    };
+    useAuthStore.mockReturnValue(mockAuthStore);  // Return the mocked authStore
 
     // Mock fetch response
     global.fetch = vi.fn().mockResolvedValue({
       ok: true,
       json: () => Promise.resolve({ message: 'Success' }),
-    })
+    });
 
-    const result = await apiRequest('/test', { method: 'POST' })
+    // Call the apiRequest method
+    const result = await apiRequest('/test', { method: 'POST' });
 
-    expect(global.fetch).toHaveBeenCalledWith('http://localhost:8000/api/test', {
+    // Ensure fetch was called with the correct full URL (including the subdomain)
+    expect(global.fetch).toHaveBeenCalledWith('http://mytenant.localhost:8000/api/test', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'Accept': 'application/json',
         Authorization: 'Bearer fake-token',
       },
-    })
-    expect(result).toEqual({ message: 'Success' })
+    });
+
+    // Check the result
+    expect(result).toEqual({ message: 'Success' });
   })
 
   it('handles API errors correctly', async () => {

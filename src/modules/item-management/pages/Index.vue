@@ -16,13 +16,13 @@
                     <template v-slot:item.actions="{ item }">
                         <v-row>
                             <v-col cols="auto">
-                                <v-btn density="comfortable" color="primary"
+                                <v-btn density="comfortable" color="primary" data-testid="edit-button"
                                     @click="router.push({ name: 'EditItemPage', params: { id: item.id } })">
                                     <v-icon icon="mdi-pencil"></v-icon>
                                 </v-btn>
                             </v-col>
                             <v-col cols="auto">
-                                <v-btn density="comfortable" color="danger" @click="deleteItem(item.id)">
+                                <v-btn density="comfortable" color="danger" data-testid="delete-button" @click="deleteItem(item.id)">
                                     <v-icon icon="mdi-delete"></v-icon>
                                 </v-btn>
                             </v-col>
