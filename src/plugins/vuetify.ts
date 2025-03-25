@@ -13,6 +13,7 @@ const customTheme = {
         primary: getComputedStyle(document.documentElement).getPropertyValue('--vt-c-indigo').trim(),
         secondary: '#FFC107',
         background: '#FFF',
+        'danger': '#a3211f',
     }
 }
 
