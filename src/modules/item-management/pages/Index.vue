@@ -57,7 +57,9 @@ const headers = ref([
 
 // Fetch items when page is mounted
 onMounted(() => {
-    itemStore.fetchItems();
+    if (itemStore.items.length === 0) { 
+        itemStore.fetchItems();
+    }
 });
 
 // Function to delete an item

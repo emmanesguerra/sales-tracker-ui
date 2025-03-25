@@ -15,7 +15,8 @@
                 <v-list-item prepend-icon="mdi-tshirt-crew" title="Item Management" value="items"
                     :to="{ name: 'ItemPage' }"></v-list-item>
                 <v-list-item prepend-icon="mdi-chart-box" title="Sales Report" value="sales"></v-list-item>
-                <v-list-item prepend-icon="mdi-qrcode" title="QR Generator" value="qrcode"></v-list-item>
+                <v-list-item prepend-icon="mdi-qrcode" title="QR Generator" value="qrcode"
+                    :to="{ name: 'QRPage' }"></v-list-item>
             </v-list>
 
             <template v-slot:append>

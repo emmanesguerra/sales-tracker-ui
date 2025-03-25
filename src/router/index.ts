@@ -7,6 +7,7 @@ import DashboardPage from '@/modules/dashboard/pages/DashboardPage.vue';
 import ItemPage from '@/modules/item-management/pages/Index.vue';
 
 import itemRoutes from '@/modules/item-management/router/route';
+import qrRoutes from '@/modules/qrcode/router/route';
 
 const routes = [
   {
@@ -25,6 +26,7 @@ const routes = [
         component: DashboardPage,
       },
       ...itemRoutes,
+      ...qrRoutes,
     ],
   },
 ];
