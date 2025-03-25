@@ -1,7 +1,8 @@
 // src/core/services/apiService.ts
 import { useAuthStore } from '@/modules/auth/store/authStore'
 
-const API_URL = import.meta.env.VITE_API_URL
+
+const API_URL = `http://${import.meta.env.VITE_API_DOMAIN}/api`
 
 const apiRequest = async (endpoint: string, options: RequestInit = {}) => {
     const authStore = useAuthStore()

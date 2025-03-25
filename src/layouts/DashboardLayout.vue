@@ -46,7 +46,7 @@ const router = useRouter();
 
 const logout = () => {
     authStore.clearToken();
-    router.push({ name: 'Login' });
+    window.location.href = `http://${import.meta.env.VITE_APP_DOMAIN}`;
 };
 </script>
 

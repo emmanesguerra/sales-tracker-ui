@@ -21,7 +21,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 import authService from '@/modules/auth/services/authService';
 import { useAuthStore } from '@/modules/auth/store/authStore';
@@ -40,17 +40,20 @@ const handleLogin = async () => {
     try {
         const data = await authService.login(email.value, password.value);
 
-        // Store token in Pinia and localStorage
-        authStore.setToken(data.token);
-
         // Redirect to dashboard after login
-        router.push({ name: 'Dashboard' });
+        window.location.href = `http://${data.tenant_domain}.${import.meta.env.VITE_APP_DOMAIN}/dashboard`;
     } catch (error) {
         errorMessage.value = 'Invalid email or password';
     } finally {
         loading.value = false;
     }
 };
+
+onMounted(() => {
+    if (authStore.token) {
+        authStore.clearToken()
+    }
+});
 </script>
 
 <style scoped>

@@ -28,7 +28,7 @@ describe('apiRequest', () => {
 
     const result = await apiRequest('/test', { method: 'POST' })
 
-    expect(global.fetch).toHaveBeenCalledWith('https://mocked-api.example.com/test', {
+    expect(global.fetch).toHaveBeenCalledWith('http://localhost:8000/api/test', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
