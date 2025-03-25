@@ -6,6 +6,8 @@ import DashboardLayout from '@/layouts/DashboardLayout.vue';
 import DashboardPage from '@/modules/dashboard/pages/DashboardPage.vue';
 import ItemPage from '@/modules/item-management/pages/Index.vue';
 
+import itemRoutes from '@/modules/item-management/router/route';
+
 const routes = [
   {
     path: '/',
@@ -22,11 +24,7 @@ const routes = [
         name: 'DashboardPage',
         component: DashboardPage,
       },
-      {
-        path: '/item-management',
-        name: 'ItemPage',
-        component: ItemPage,
-      },
+      ...itemRoutes,
     ],
   },
 ];
@@ -59,6 +57,7 @@ router.beforeEach(async (to, from, next) => {
     const response = await authService.retriveToken()
     if (response.token) {
       authStore.setToken(response.token) // Store new token in Pinia
+      authStore.setSubdomain(response.subdomain)
       return next()
     }
   } catch (error) {

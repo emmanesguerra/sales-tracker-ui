@@ -1,5 +1,5 @@
 <template>
-  <v-calendar class="custom-calendar" show-adjacent-months="true"></v-calendar>
+  <v-calendar class="custom-calendar" :show-adjacent-months="true"></v-calendar>
 </template>
 
 <script setup>

@@ -4,6 +4,7 @@ import { defineStore } from 'pinia';
 export const useAuthStore = defineStore('auth', {
   state: () => ({
     token: null as string | null,
+    subdomain: null as string | null,
   }),
   actions: {
     setToken(token: string) {
@@ -13,6 +14,12 @@ export const useAuthStore = defineStore('auth', {
     clearToken() {
       this.token = null;
       localStorage.removeItem('auth_token');
+    },
+    setSubdomain(subdomain: string) {
+      this.subdomain = subdomain;
+    },
+    clearSubdomain() {
+      this.subdomain = null;
     },
   },
   persist: true,

@@ -4,7 +4,7 @@
         <v-card class="mt-4" elevation="0">
             <v-card-title class="d-flex justify-space-between align-center">
                 <span class="text-h5">Item List</span>
-                <v-btn color="primary" @click="router.push('/items/create')">
+                <v-btn color="primary" @click="router.push({ name: 'CreateItemPage' })">
                     Add Item
                 </v-btn>
             </v-card-title>
@@ -16,7 +16,8 @@
                     <template v-slot:item.actions="{ item }">
                         <v-row>
                             <v-col cols="auto">
-                                <v-btn density="comfortable" color="primary" @click="router.push(`/items/${item.id}/edit`)">
+                                <v-btn density="comfortable" color="primary"
+                                    @click="router.push({ name: 'EditItemPage', params: { id: item.id } })">
                                     <v-icon icon="mdi-pencil"></v-icon>
                                 </v-btn>
                             </v-col>
@@ -44,6 +45,7 @@ const router = useRouter();
 // Table headers
 const headers = ref([
     { title: 'ID', key: 'id' },
+    { title: 'Code', key: 'code' },
     { title: 'Name', key: 'name' },
     { title: 'Description', key: 'description' },
     { title: 'Price', key: 'price' },
