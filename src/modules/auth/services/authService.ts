@@ -24,6 +24,13 @@ const AuthService = {
       },
     })
   },
+
+  async register(email: string, password: string, name: string) {
+    return apiRequest('/register', {
+      method: 'POST',
+      body: JSON.stringify({ email, password, name }),
+    })
+  }
 }
 
 export default AuthService

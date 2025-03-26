@@ -11,7 +11,7 @@
                         <v-form v-model="valid" ref="form" lazy-validation>
                             <v-row>
                                 <v-col :cols="12" :md="6">
-                                    <v-text-field v-model="item.code" label="Item Code" :rules="[rules.required]" required></v-text-field>
+                                    <v-text-field v-model="item.code" label="Item Code" :rules="[rules.required]" required @input="handleInput"></v-text-field>
                                 </v-col>
                             </v-row>
 
@@ -21,7 +21,7 @@
                                 </v-col>
 
                                 <v-col :cols="12">
-                                    <v-textarea v-model="item.description" label="Description" :rules="[rules.required]" required></v-textarea>
+                                    <v-textarea v-model="item.description" label="Description"></v-textarea>
                                 </v-col>
                             </v-row>
 
@@ -103,5 +103,13 @@ const saveItem = async () => {
     } catch (error) {
         console.error('Error saving item:', error);
     }
+};
+
+const handleInput = (event) => {
+  // Get the input value from the event and convert to uppercase
+  const upperCaseValue = event.target.value.toUpperCase();
+
+  // Set the value to the model
+  item.value.code = upperCaseValue;
 };
 </script>

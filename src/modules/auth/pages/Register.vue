@@ -2,9 +2,12 @@
 <template>
     <v-container class="fill-height d-flex align-center justify-center">
         <v-card class="login-card" elevation="20" width="400">
-            <v-card-title class="text-center">Welcome</v-card-title>
+            <v-card-title class="text-center">Sign Up</v-card-title>
             <v-card-text>
                 <v-form @submit.prevent="handleLogin">
+                    <v-text-field v-model="name" label="Name" type="text" required class="name-field"
+                        :error="!!errorMessage"></v-text-field>
+
                     <v-text-field v-model="email" label="Email" type="email" required class="email-field"
                         :error="!!errorMessage"></v-text-field>
 
@@ -13,13 +16,13 @@
 
                     <v-alert v-if="errorMessage" type="error" dense>{{ errorMessage }}</v-alert>
 
-                    <v-btn type="submit" color="primary" block :loading="loading">Login</v-btn>
+                    <v-btn type="submit" color="primary" block :loading="loading">Submit</v-btn>
                 </v-form>
 
                 <v-row class="mt-3">
                     <v-col class="text-center">
-                        <span>Don't have an account?</span>
-                        <router-link :to="{ name: 'Register' }">Sign up</router-link>
+                        <span>Already have an account?</span>
+                        <router-link :to="{ name: 'Login' }">Login</router-link>
                     </v-col>
                 </v-row>
             </v-card-text>
@@ -33,8 +36,9 @@ import { useRouter } from 'vue-router';
 import authService from '@/modules/auth/services/authService';
 import { useAuthStore } from '@/modules/auth/store/authStore';
 
-const email = ref('john@example.com');
-const password = ref('secret');
+const name = ref('');
+const email = ref('');
+const password = ref('');
 const loading = ref(false);
 const errorMessage = ref('');
 const authStore = useAuthStore();
@@ -45,7 +49,7 @@ const handleLogin = async () => {
     errorMessage.value = '';
 
     try {
-        const data = await authService.login(email.value, password.value);
+        const data = await authService.register(email.value, password.value, name.value);
 
         // Redirect to dashboard after login
         window.location.href = `http://${data.tenant_domain}.${import.meta.env.VITE_APP_DOMAIN}/dashboard`;

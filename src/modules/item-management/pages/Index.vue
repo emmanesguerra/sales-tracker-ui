@@ -13,6 +13,12 @@
                 <!-- Data Table -->
                 <v-data-table :headers="headers" :items="itemStore.items">
                     <!-- Table Rows and Actions -->
+                    <template v-slot:item.price="{ item }">
+                        <span class="text-right">{{ parseFloat(item.price).toFixed(2) }}</span>
+                    </template>
+                    <template v-slot:item.stock="{ item }">
+                        <span>{{ item.stock }}</span>
+                    </template>
                     <template v-slot:item.actions="{ item }">
                         <v-row>
                             <v-col cols="auto">
@@ -47,11 +53,8 @@ const headers = ref([
     { title: 'ID', key: 'id' },
     { title: 'Code', key: 'code' },
     { title: 'Name', key: 'name' },
-    { title: 'Description', key: 'description' },
     { title: 'Price', key: 'price' },
     { title: 'Stock', key: 'stock' },
-    { title: 'Created At', key: 'created_at' },
-    { title: 'Updated At', key: 'updated_at' },
     { title: 'Actions', key: 'actions', sortable: false }
 ]);
 
