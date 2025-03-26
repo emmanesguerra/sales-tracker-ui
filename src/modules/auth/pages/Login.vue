@@ -33,8 +33,8 @@ import { useRouter } from 'vue-router';
 import authService from '@/modules/auth/services/authService';
 import { useAuthStore } from '@/modules/auth/store/authStore';
 
-const email = ref('john@example.com');
-const password = ref('secret');
+const email = ref('');
+const password = ref('');
 const loading = ref(false);
 const errorMessage = ref('');
 const authStore = useAuthStore();
