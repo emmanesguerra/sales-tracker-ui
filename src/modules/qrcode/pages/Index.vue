@@ -6,6 +6,7 @@
                     <v-card-title>QR Selection Form</v-card-title>
                     <v-card-text>
                         <v-form>
+                            <v-card-title>Items</v-card-title>
                             <!-- Radio Buttons -->
                             <v-radio-group v-model="selectAll">
                                 <v-radio label="Select All" :value="true"></v-radio>
@@ -16,6 +17,13 @@
                             <v-autocomplete v-model="form.selectedItems" label="Select Items" :items="allItems"
                                 item-title="name" item-value="id" multiple chips clearable
                                 :disabled="selectAll"></v-autocomplete>
+
+                            <v-card-title>Printing Layout</v-card-title>
+
+                            <v-radio-group v-model="layout">
+                                <v-radio label="Grid" :value="true"></v-radio>
+                                <v-radio label="Tabular" :value="false"></v-radio>
+                            </v-radio-group>
 
                             <v-row>
                                 <v-col :cols="12">
@@ -41,8 +49,10 @@ import { qrCodeService } from '@/modules/qrcode/services/qrCodeService'; // Impo
 const itemStore = useItemStore();
 const { items } = storeToRefs(itemStore);
 const selectAll = ref(false);
+const layout = ref(true);
 const form = ref({
     selectedItems: [] as number[],
+    layout: layout.value,
 });
 
 // Convert items from store to an array of objects with { id, name }
@@ -63,7 +73,12 @@ watch(selectAll, (newValue) => {
 // Handle form submission and file download
 const submitForm = async () => {
     try {
-        const fileBlob = await qrCodeService.submitForm(form.value.selectedItems);
+        const formData = {
+            selectedItems: form.value.selectedItems,
+            isGrid: layout.value, // Pass the selected layout to the service
+        };
+        
+        const fileBlob = await qrCodeService.submitForm(formData);
 
         // Ensure the file is a valid blob (e.g., a PDF)
         const fileURL = window.URL.createObjectURL(fileBlob);

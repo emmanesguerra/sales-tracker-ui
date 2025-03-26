@@ -59,7 +59,7 @@ describe('Index.vue', () => {
         const radioGroup = wrapper.find('v-radio-group');
         expect(radioGroup.exists()).toBe(true);
         const radioButtons = wrapper.findAll('v-radio');
-        expect(radioButtons).toHaveLength(2); // 2 radio buttons
+        expect(radioButtons).toHaveLength(4); // 2 radio buttons
     });
 
     it('renders the multi-select dropdown', async () => {
