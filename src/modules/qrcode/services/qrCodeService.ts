@@ -2,12 +2,12 @@ import { apiRequest } from '@/core/services/apiService';
 
 // Function to submit the form and fetch the downloadable file
 export const qrCodeService = {
-    async submitForm(selectedItems: number[], layout: boolean): Promise<Blob> {
+    async submitForm(formData: { selectedItems: number[]; isGrid: boolean }): Promise<Blob> {
         try {
             // Use apiRequest for making the API call
             return await apiRequest('/qr-code/generate', {
                 method: 'POST',
-                body: JSON.stringify({ items: selectedItems, layout: layout }), // Include layout in the request
+                body: JSON.stringify({ items: formData}), // Include layout in the request
             }, 'blob');
 
         } catch (error) {
