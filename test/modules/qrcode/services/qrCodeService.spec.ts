@@ -2,51 +2,47 @@ import { vi } from 'vitest';
 import { qrCodeService } from '@/modules/qrcode/services/qrCodeService';
 import { apiRequest } from '@/core/services/apiService';
 
-vi.mock('@/core/services/apiService'); // Mock the apiRequest function
+// Mocking the `apiRequest` function used in the service
+vi.mock('@/core/services/apiService', () => ({
+  apiRequest: vi.fn(),
+}));
 
 describe('qrCodeService', () => {
-  it('should submit the form and return a file blob', async () => {
-    const mockBlob = new Blob(['test content'], { type: 'application/csv' }); // Create a mock Blob
+  it('should submit the form and return a Blob', async () => {
+    const mockBlob = new Blob(['test content'], { type: 'application/csv' }); // Mock Blob content
 
-    // Mock the apiRequest function to return a fake response
-    apiRequest.mockResolvedValue({
-      fileUrl: 'http://example.com/fake-file.csv',
-    });
-
-    // Mock the fetch response for the file URL
-    global.fetch = vi.fn().mockResolvedValue({
-      blob: () => Promise.resolve(mockBlob),
-    });
+    // Mock the `apiRequest` to return the Blob
+    apiRequest.mockResolvedValue(mockBlob);
 
     const selectedItems = [1, 2, 3]; // Example selected items
 
+    // Call the submitForm method and capture the response
     const result = await qrCodeService.submitForm(selectedItems);
 
     // Check that the result is a Blob
     expect(result).toBeInstanceOf(Blob);
-    expect(result.size).toBeGreaterThan(0); // The Blob should have content
+    expect(result.size).toBeGreaterThan(0); // Ensure the Blob has content
 
-    // Check if apiRequest was called with the correct parameters
+    // Ensure that apiRequest was called with the correct parameters
     expect(apiRequest).toHaveBeenCalledWith('/qr-code/generate', {
       method: 'POST',
       body: JSON.stringify({ items: selectedItems }),
-    });
-
-    // Check if fetch was called to get the file blob
-    expect(global.fetch).toHaveBeenCalledWith('http://example.com/fake-file.csv');
+    }, 'blob');
   });
 
-  it('should throw an error if the API call fails', async () => {
-    // Mock the apiRequest function to throw an error
+  it('should throw an error if apiRequest fails', async () => {
+    // Mock the apiRequest to simulate a failed request
     apiRequest.mockRejectedValue(new Error('API request failed'));
 
     const selectedItems = [1, 2, 3];
 
-    try {
-      await qrCodeService.submitForm(selectedItems);
-    } catch (error) {
-      // Check that the error is thrown
-      expect(error.message).toBe('Error submitting form to server.');
-    }
+    // Test that the error is thrown
+    await expect(qrCodeService.submitForm(selectedItems)).rejects.toThrow('Error submitting form to server.');
+
+    // Ensure that apiRequest was called with the correct parameters
+    expect(apiRequest).toHaveBeenCalledWith('/qr-code/generate', {
+      method: 'POST',
+      body: JSON.stringify({ items: selectedItems }),
+    }, 'blob');
   });
 });

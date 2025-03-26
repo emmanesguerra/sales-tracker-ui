@@ -13,17 +13,9 @@
                             </v-radio-group>
 
                             <!-- Multi-Select Dropdown -->
-                            <v-autocomplete 
-                                v-model="form.selectedItems" 
-                                label="Select Items" 
-                                :items="allItems" 
-                                item-title="name" 
-                                item-value="id" 
-                                multiple 
-                                chips 
-                                clearable
-                                :disabled="selectAll"
-                            ></v-autocomplete>
+                            <v-autocomplete v-model="form.selectedItems" label="Select Items" :items="allItems"
+                                item-title="name" item-value="id" multiple chips clearable
+                                :disabled="selectAll"></v-autocomplete>
 
                             <v-row>
                                 <v-col :cols="12">
@@ -72,13 +64,23 @@ watch(selectAll, (newValue) => {
 const submitForm = async () => {
     try {
         const fileBlob = await qrCodeService.submitForm(form.value.selectedItems);
-        
-        // Create a URL for the file and trigger the download
+
+        // Ensure the file is a valid blob (e.g., a PDF)
         const fileURL = window.URL.createObjectURL(fileBlob);
+
+        // Create an anchor tag to trigger the download
         const a = document.createElement('a');
         a.href = fileURL;
-        a.download = 'generated-file.csv'; // Customize the filename
+
+        // Set the correct filename based on the type of file (PDF in this case)
+        a.download = 'generated-file.pdf'; // Change to the appropriate file type extension if needed
+
+        // Programmatically click the link to trigger the download
         a.click();
+        a.remove();
+
+        // Release the object URL after download to avoid memory leaks
+        window.URL.revokeObjectURL(fileURL);
     } catch (error) {
         console.error('Error during form submission or file download:', error);
     }
