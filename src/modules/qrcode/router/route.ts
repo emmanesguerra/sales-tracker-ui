@@ -1,7 +1,7 @@
 // src/modules/qrcode/router/route.ts
 import QRPage from '../pages/Index.vue';
 
-const itemRoutes = [
+const qrRoutes = [
   {
     path: '/qr-generator',
     name: 'QRPage',
@@ -9,4 +9,4 @@ const itemRoutes = [
   }
 ];
 
-export default itemRoutes;
+export default qrRoutes;

@@ -48,19 +48,23 @@ describe('Index.vue', () => {
 
     it('renders the radio group for selection', async () => {
         const pinia = createPinia();
+        
         const wrapper = mount(Index, {
-            global: {
-                plugins: [pinia], // Use Pinia in the global config
-            },
+          global: {
+            plugins: [pinia, vuetify], // Use Vuetify in the global config
+          },
         });
-
+    
         await wrapper.vm.$nextTick(); // Ensure reactivity is processed
-
-        const radioGroup = wrapper.find('v-radio-group');
+    
+        // Find v-radio-group component
+        const radioGroup = wrapper.findComponent({ name: 'v-radio-group' });
         expect(radioGroup.exists()).toBe(true);
-        const radioButtons = wrapper.findAll('v-radio');
-        expect(radioButtons).toHaveLength(4); // 2 radio buttons
-    });
+    
+        // Find all v-radio components inside v-radio-group
+        const radioButtons = wrapper.findAllComponents({ name: 'v-radio' });
+        expect(radioButtons).toHaveLength(4); // Expect 4 radio buttons
+      });
 
     it('renders the multi-select dropdown', async () => {
         const pinia = createPinia();
@@ -78,15 +82,17 @@ describe('Index.vue', () => {
 
     it('renders the submit button', async () => {
         const pinia = createPinia();
+
         const wrapper = mount(Index, {
             global: {
-                plugins: [pinia], // Use Pinia in the global config
+                plugins: [pinia, vuetify],
             },
         });
 
         await wrapper.vm.$nextTick(); // Ensure reactivity is processed
 
-        const submitButton = wrapper.find('v-btn');
+        // Test for v-btn
+        const submitButton = wrapper.findComponent({ name: 'v-btn' });
         expect(submitButton.exists()).toBe(true);
         expect(submitButton.text()).toBe('Submit');
     });

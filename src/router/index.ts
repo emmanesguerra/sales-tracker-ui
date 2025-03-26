@@ -9,6 +9,7 @@ import ItemPage from '@/modules/item-management/pages/Index.vue';
 
 import itemRoutes from '@/modules/item-management/router/route';
 import qrRoutes from '@/modules/qrcode/router/route';
+import salesRoutes from '@/modules/sales/router/route';
 
 const routes = [
   {
@@ -33,6 +34,7 @@ const routes = [
       },
       ...itemRoutes,
       ...qrRoutes,
+      ...salesRoutes,
     ],
   },
 ];

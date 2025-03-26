@@ -37,7 +37,6 @@ describe('apiRequest', () => {
     expect(global.fetch).toHaveBeenCalledWith('http://mytenant.localhost:8000/api/test', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
         'Accept': 'application/json',
         Authorization: 'Bearer fake-token',
       },

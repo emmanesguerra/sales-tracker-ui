@@ -8,6 +8,8 @@ import { useItemStore } from '@/modules/item-management/store/itemStore';
 import * as components from 'vuetify/components'
 import * as directives from 'vuetify/directives'
 import { createVuetify } from 'vuetify';
+import ItemPage from '@/modules/item-management/pages/Index.vue';
+import FormPage from '@/modules/item-management/pages/Form.vue';
 
 vi.mock('@/modules/item-management/store/itemStore'); // Mocking the store
 
@@ -22,9 +24,9 @@ global.ResizeObserver = require('resize-observer-polyfill')
 const router = createRouter({
     history: createWebHistory(),
     routes: [
-        { path: '/', name: 'Home' },
-        { path: '/create', name: 'CreateItemPage' },
-        { path: '/edit/:id', name: 'EditItemPage' }
+        { path: '/', name: 'Home', component: Index }, // Ensure HomePage is defined
+        { path: '/item-management/create', name: 'CreateItemPage', component: ItemPage }, // Ensure FormPage is the right component
+        { path: '/item-management/edit/:id', name: 'EditItemPage', component: FormPage }, // Ensure FormPage is the right component for editing as well
     ]
 });
 

@@ -6,7 +6,6 @@ const apiRequest = async (endpoint: string, options: RequestInit = {}, responseT
     const API_URL = `http://${authStore.subdomain}.${import.meta.env.VITE_API_DOMAIN}/api`
 
     const headers = {
-        'Content-Type': 'application/json',
         'Accept': responseType === 'blob' ? 'application/pdf' : 'application/json',
         ...options.headers,
         Authorization: authStore.token ? `Bearer ${authStore.token}` : '',
