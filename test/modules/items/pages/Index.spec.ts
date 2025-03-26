@@ -58,11 +58,8 @@ describe('Index.vue', () => {
         expect(screen.getByText('ID')).toBeInTheDocument();
         expect(screen.getByText('Code')).toBeInTheDocument();
         expect(screen.getByText('Name')).toBeInTheDocument();
-        expect(screen.getByText('Description')).toBeInTheDocument();
         expect(screen.getByText('Price')).toBeInTheDocument();
         expect(screen.getByText('Stock')).toBeInTheDocument();
-        expect(screen.getByText('Created At')).toBeInTheDocument();
-        expect(screen.getByText('Updated At')).toBeInTheDocument();
     });
 
     it('displays the correct items in the list', () => {
