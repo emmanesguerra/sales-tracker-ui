@@ -14,7 +14,7 @@
                         :width="350"
                         clearable 
                         hide-details="auto"></v-date-input>
-                    <v-btn class="mx-3" color="primary" @click="router.push({ name: 'UploadPage' })">
+                    <v-btn class="mx-3" color="primary" @click="router.push({ name: 'DownloadPage' })">
                         Download Report
                     </v-btn>
                     <v-btn color="primary" @click="router.push({ name: 'UploadPage' })">

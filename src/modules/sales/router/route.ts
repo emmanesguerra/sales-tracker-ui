@@ -1,6 +1,7 @@
 // src/modules/qrcode/router/route.ts
 import SalesPage from '../pages/Index.vue';
 import UploadPage from '../pages/Upload.vue';
+import DownloadPage from '../pages/Download.vue';
 
 const salesRoutes = [
   {
@@ -12,6 +13,11 @@ const salesRoutes = [
     path: '/csv-upload',
     name: 'UploadPage',
     component: UploadPage,
+  },
+  {
+    path: '/download',
+    name: 'DownloadPage',
+    component: DownloadPage,
   }
 ];
 
