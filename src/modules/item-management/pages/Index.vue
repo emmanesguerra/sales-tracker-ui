@@ -50,12 +50,12 @@ const router = useRouter();
 
 // Table headers
 const headers = ref([
-    { title: 'ID', key: 'id' },
-    { title: 'Code', key: 'code' },
+    { title: 'ID', key: 'id', width: '150px' },
+    { title: 'Code', key: 'code', width: '200px' },
     { title: 'Name', key: 'name' },
-    { title: 'Price', key: 'price' },
-    { title: 'Stock', key: 'stock' },
-    { title: 'Actions', key: 'actions', sortable: false }
+    { title: 'Price', key: 'price', width: '150px' },
+    { title: 'Stock', key: 'stock', width: '200px' },
+    { title: 'Actions', key: 'actions', width: '300px', sortable: false }
 ]);
 
 // Fetch items when page is mounted

@@ -8,7 +8,7 @@ const uploadCsv = async (file: File) => {
         const response = await apiRequest('/upload-csv', {
             method: 'POST',
             body: formData,
-            headers: {} // Let the browser set the Content-Type for FormData
+            headers: {}
         })
         return response
     } catch (error) {

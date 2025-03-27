@@ -3,8 +3,10 @@ import 'vuetify/styles'
 import { createVuetify } from 'vuetify'
 import * as components from 'vuetify/components'
 import * as directives from 'vuetify/directives'
+import * as labsComponents from 'vuetify/labs/components'
 import '@mdi/font/css/materialdesignicons.css'
 import { VCalendar } from 'vuetify/labs/VCalendar'
+import { VPicker } from 'vuetify/labs/VPicker'
 
 // Define custom theme
 const customTheme = {
@@ -19,8 +21,11 @@ const customTheme = {
 
 // Vuetify instance
 const vuetify = createVuetify({
-    components,
-    directives,
+    components: {
+        ...components,
+        ...directives,
+        ...labsComponents,
+    },
     theme: {
         defaultTheme: 'customTheme',
         themes: {
