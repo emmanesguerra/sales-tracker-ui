@@ -42,7 +42,7 @@ package.json               # Project dependencies and scripts
 ## Installation
 1. Clone the repository:
    ```sh
-   git clone <repository-url>
+   git clone https://github.com/emmanesguerra/sales-tracker-ui.git
    cd sales-tracker-ui
    ```
 2. Install dependencies:
