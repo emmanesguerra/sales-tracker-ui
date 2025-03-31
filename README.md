@@ -1,39 +1,67 @@
-# .
+# Sales Tracker UI
 
-This template should help get you started developing with Vue 3 in Vite.
+## Description
+Sales Tracker UI is the user-friendly frontend for managing sales and products, seamlessly integrating with a Laravel-based backend. It streamlines sales tracking, product organization, and QR code generation to enhance efficiency and accuracy.
 
-## Recommended IDE Setup
+## Features
+- **QR Generator** – Generate QR codes for efficient sales tracking.
+- **Product Management** – Add, edit, and remove products from the system.
+- **Sales Report** – View and analyze sales data.
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+## Tech Stack
+- **Vue 3** – Progressive JavaScript framework
+- **Vuetify** – Material Design component framework
+- **Pinia** – State management
+- **Vue Router** – Navigation handling
+- **Day.js** – Lightweight JavaScript date library
 
-## Type Support for `.vue` Imports in TS
-
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
+## Folder Structure
+```
+src/
+├── assets/                # Static assets (images, styles)
+├── components/            # Reusable Vue components
+├── core/
+│   ├── services/          # API handlers and core services
+├── modules/
+│   ├── auth/              # Authentication module
+│   │   ├── pages/         # Authentication-related pages (e.g., Login.vue)
+│   ├── dashboard/         # Dashboard module
+│   │   ├── pages/         # Dashboard-related pages (e.g., Dashboard.vue)
+│   ├── sales/             # Sales tracking module
+│   │   ├── pages/         # Sales-related pages
+├── router/                # Vue Router configurations
+├── store/                 # Global Pinia stores for state management
+├── App.vue                # Root Vue component
+├── main.ts                # Application entry point
+.tests/
+├── unit/                  # Unit tests
+.env                       # Environment variables configuration
+package.json               # Project dependencies and scripts
 ```
 
-### Compile and Hot-Reload for Development
+## Installation
+1. Clone the repository:
+   ```sh
+   git clone <repository-url>
+   cd sales-tracker-ui
+   ```
+2. Install dependencies:
+   ```sh
+   npm install
+   ```
+3. Start the development server:
+   ```sh
+   npm run dev
+   ```
 
-```sh
-npm run dev
-```
-
-### Type-Check, Compile and Minify for Production
-
+## Build for Production
+To create a production-ready build:
 ```sh
 npm run build
 ```
 
-### Run Unit Tests with [Vitest](https://vitest.dev/)
-
+## Running Tests
+To run unit tests:
 ```sh
 npm run test:unit
 ```
